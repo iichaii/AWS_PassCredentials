@@ -6,7 +6,7 @@ def lambda_handler(context, event):
     sts_connection = boto3.client('sts')
     assume = sts_connection.assume_role(
         RoleArn="arn:aws:iam::<Account_ID>:role/ROLE_B",
-        RoleSessionName="cross_acct_lambda"
+        RoleSessionName="sts_lambda"
     )
 
     ACCESS_KEY = assume['Credentials']['AccessKeyId']
