@@ -5,7 +5,7 @@ def lambda_handler(context, event):
     #assumerole&retrievetemporarycredentials
     sts_connection = boto3.client('sts')
     assume = sts_connection.assume_role(
-        RoleArn="arn:aws:iam::153787536644:role/ROLE_B",
+        RoleArn="arn:aws:iam::<Account_ID>:role/ROLE_B",
         RoleSessionName="cross_acct_lambda"
     )
 
@@ -22,7 +22,7 @@ def lambda_handler(context, event):
         "SESSION_TOKEN"     : SESSION_TOKEN
     }
     response = client.invoke(
-        FunctionName = 'arn:aws:lambda:us-east-1:153787536644:function:childFunction',
+        FunctionName = 'arn:aws:lambda:us-east-1:<Account_ID>:function:childFunction',
         InvocationType = 'RequestResponse',
         Payload = json.dumps(inputParams)
     )
